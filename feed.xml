@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://agentneoteam.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://agentneoteam.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2025-04-27T23:38:39+08:00</updated><id>https://agentneoteam.github.io/feed.xml</id><title type="html">AgentNEO 博客</title><subtitle>AgentNEO 官方博客</subtitle><entry><title type="html">AgentNEO 9 月线路迁移公告以及补偿方案</title><link href="https://agentneoteam.github.io/2019/09/28/announcement.html" rel="alternate" type="text/html" title="AgentNEO 9 月线路迁移公告以及补偿方案" /><published>2019-09-28T14:15:00+08:00</published><updated>2019-09-28T14:15:00+08:00</updated><id>https://agentneoteam.github.io/2019/09/28/announcement</id><content type="html" xml:base="https://agentneoteam.github.io/2019/09/28/announcement.html"><![CDATA[<p>由于 GFW 的封锁升级，Shadowsocks 协议被大规模封锁，本站提供的线路于 9 月 16 日被连续干扰阻断。运维团队在连续跟上游 IDC 沟通、更换 IP 后也被很快封锁。后续我们提供了中转线路应急，并且于 9 月 23 日开始连夜适配 V2Ray 协议。第一组 V2Ray 线路于 9 月 25 日晚上线运行，得到了用户良好的反馈。</p>
+
+<p>目前 V2Ray 线路表现良好，已连续运行数天并有着优异速度表现和抗干扰能力，我们决定未来将所有线路迁移至 V2Ray。目前主流软件的订阅配置已经适配完成，iOS 平台有 Shadowrocket、Quantumult，Android 有 v2rayNG，Windows 有 Clash for Windows，macOS 有 ClashX。更多软件的适配也正在进行中。</p>
+
+<p>关于这次事故我们内部做了非常认真的复盘，由于团队内部非常喜欢 Surge 这款软件，所以在 Shadowsocks 干扰日益严重的阶段（ 6 月开始的短时间干扰），也没有考虑更换到 Surge 不兼容的协议。直到这次长时间封锁，我们意识到没有好的协议支持，软件再好也无济于事。所以在评估了 SSR 和 V2Ray 后，我们选择了 V2Ray 来作为以后的线路技术。</p>
+
+<p>为了弥补对用户造成的损失以及切换软件带来的成本，我们决定补偿所有用户 15 天的套餐时长。并且同时带来 7 折限时<sup><small> 1 </small></sup>优惠码<sup><small> 2 </small></sup> <code class="language-plaintext highlighter-rouge">V2RAYGO</code> 直接使用。</p>
+
+<p>另，我们原域名由于被 DNS 污染已无法正常访问，我们已将域名切换到 <a href="https://agentneo.tech">https://agentneo.tech</a>，还望惠存。</p>
+
+<blockquote>
+  <p><small>1) 限时优惠码将会在 2019-9-30 23:59:59 后失效</small><br />
+<small>2) 由于支付网关以及信用卡渠道还会收取一定手续费，所以优惠码不可用于 18 元的基础套餐新用户订单，还请见谅</small></p>
+</blockquote>]]></content><author><name></name></author><summary type="html"><![CDATA[由于 GFW 的封锁升级，Shadowsocks 协议被大规模封锁，本站提供的线路于 9 月 16 日被连续干扰阻断。运维团队在连续跟上游 IDC 沟通、更换 IP 后也被很快封锁。后续我们提供了中转线路应急，并且于 9 月 23 日开始连夜适配 V2Ray 协议。第一组 V2Ray 线路于 9 月 25 日晚上线运行，得到了用户良好的反馈。]]></summary></entry><entry><title type="html">AgentNEO 架构简介</title><link href="https://agentneoteam.github.io/2018/05/07/agentneo-jia-gou-jian-jie.html" rel="alternate" type="text/html" title="AgentNEO 架构简介" /><published>2018-05-07T11:15:00+08:00</published><updated>2018-05-07T11:15:00+08:00</updated><id>https://agentneoteam.github.io/2018/05/07/agentneo-jia-gou-jian-jie</id><content type="html" xml:base="https://agentneoteam.github.io/2018/05/07/agentneo-jia-gou-jian-jie.html"><![CDATA[<h2 id="前言">前言</h2>
+
+<p>我和朋友常常谈起，对于做技术的我们，这是个支离破碎的世界，大到被无形的墙分割的互联网，小到林林种种残次的工具，他们总是很难以完整的面貌展现在我们面前。某一天，我们也和其他同样背负着「程序员」之名的人一样，决定以「精卫填海」的精神去「修复」眼中的世界，而这一切，开始于用一架优雅的、精致的梯子去翻越藩篱…</p>
+
+<h2 id="简介">简介</h2>
+
+<p>AgentNEO 生产环境是完全 Docker 化的，所有的服务都运行在 Docker 中。这些服务除了我们的 Web 主站，Shadowsocks 节点，还有其他很多基础服务。例如 HA Kafka、MySQL、Redis、各个服务的 Healthcheck、CI/CD 所需要的 Drone、Gitlab runner 等。</p>
+
+<p>到目前为止，AgentNEO Shadowsocks 节点，包括 VPS 和独立服务器，一共有 30 多个，分布在香港、日本、韩国、美国等地，同时和这些节点所对应的 Docker 容器数量接近 300 个。那么我们是如何做到将不同的服务启动到合适的宿主机上，并且保证互相通信安全的呢？答案是 Rancher！</p>
+
+<blockquote>
+  <p>全新 Rancher 2.0 刚刚发布，2.0 版本的 Rancher 全面拥抱了 Kubernetes，用户可以非常方便地创建高可用的 Kubernetes 集群。</p>
+</blockquote>
+
+<h2 id="rancher">Rancher</h2>
+
+<p>Rancher 是一个 Docker 集群管理工具，提供了非常友好的 WebUI 去帮助用户管理容器。它通过虚拟网络加服务编排技术，实现在合适的服务中运行我们想要的容器。</p>
+
+<h3 id="集群容器编排">集群容器编排</h3>
+
+<p>在 Rancher 中，有一个概念「服务」，它指的是拥有相同参数的一组容器。因此我们的 Shadowsocks 应用就可以抽象成为一个 Rancher 的「服务」。</p>
+
+<p>每个服务都有自己的很多属性，其中最关键的，则是『调度规则』。</p>
+
+<p><img src="/images/A51D0B3C-F8E0-4937-AE97-231A01D6A673.png" alt="服务调度规则" /></p>
+
+<p>上图是我们一组 Shadowsocks 服务的调度规则。它的意思是，在每一台同时拥有 <code class="language-plaintext highlighter-rouge">zone=hk-azure</code> 和 <code class="language-plaintext highlighter-rouge">role=ss</code> 标签的主机上，都启动一个 Shadowsocks 进程。这样一来，我们将需要运行 Shadowsocks 服务的节点（此处为香港 Azure 数据中心的一台 VPS）打上对应的标签即可，剩下的事情 Rancher 会自动帮我们完成。更棒的是，如果以后我们需要添加一台 Shadowsocks 服务器，只用将对应标签打到新加入的节点里即可自动完成所有部署。</p>
+
+<p><img src="/images/5496CB64-E6B5-4FD2-99A3-2F2041AD80BE.png" alt="主机标签管理" /></p>
+
+<p><em>服务器标签管理，非常简单</em></p>
+
+<p>除此之外，Rancher 还提供了很酷的容器链接图，用户可以很直观的看到目前相关容器的相互依赖。</p>
+
+<p><img src="/images/9EF47B72-B289-4FF7-AA27-92F0B4441E80.png" alt="容器链接图" /></p>
+
+<p><em>AgentNEO 官网链接图，可以很清楚的看到前端负载均衡器将请求分发到两个 Rails 应用中</em></p>
+
+<h2 id="自研的意义">自研的意义</h2>
+
+<p>熟悉的朋友可能会知道，AgentNEO 官网没有使用 ss-panel 这个开源项目，而是基于 Ruby on Rails 自己开发的。其实除了官网，我们的 Shadowsocks 也是自己实现的。</p>
+
+<blockquote>
+  <p><em>为什么要造轮子？</em></p>
+</blockquote>
+
+<p>首先，如果只是用开源软件无脑搭出来一个平台，就如同玩已经组装好的乐高，是一件特别没有意思的事，而且对于开源的重度依赖，也会在业务逻辑上遇到比较大的障碍。然后，作为一群还算有梦想程序员，还是想做一些有用的事情，来推动整个 Shadowsocks 社区的建设，而不是仅仅汲取开源社区的成果。</p>
+
+<p>所以，我们在一开始做 AgentNEO 的时候，就投入了很大的研发精力，从依据 Shadowsocks 协议完成自己的 Shadowsocks 实现，到 AgentNEO 官网的开发，无一不亲力而为。这一切都是为了更好的进行技术沉淀，将来回报开源社区。</p>
+
+<h2 id="devops">DevOps</h2>
+
+<p>关于 DevOps，维基百科的介绍如下：</p>
+
+<blockquote>
+  <p>DevOps（Development 和 Operations 的组合词）是一种重视「软件开发人员（Dev）」和「IT运维技术人员（Ops）」之间沟通合作的文化、运动或惯例。透过自动化“软件交付”和“架构变更”的流程，来使得构建、测试、发布软件能够更加地快捷、频繁和可靠。</p>
+</blockquote>
+
+<p>在 AgentNEO，我们始终坚持的是，尽量将所有步骤都放入自动化流程中，尽量避免人为操作。部署时只用做决策，而不用执行（是否上线是决策，而部署步骤是执行）。大大减少「人」带来的风险。得益于近几年以 Docker 为首容器技术的兴起，整个生态圈极为活跃，我们自动化的各个环节都有非常丰富的资源和技术支持。</p>
+
+<p>在代码管理方面，我们使用 Gitlab 作为管理平台。拿官网举例，当有新的版本标签（例如 v1.4.5）被 push 到远端后，会触发自动测试以及自动构建（构建 Docker 镜像）的任务，成功后，会进入到等待上线的阶段，这个时候，运维只需要手动点击 Gitlab 中的部署按钮即可完成上线（只决策，不执行）。如果测试或者构建失败，则会自动发送邮件通知相关人员进行处理。</p>
+
+<p><img src="/images/AF47E72B-B734-4A55-AC8D-B54C29194A3C.png" alt="CI/CD Pipeline" /></p>
+
+<p><em>AgentNEO 官网 CI/CD Pipeline，点击 Deploy 流程中的播放按钮即可完成部署（使用 Gitlab runner 调用了 Rancher 的 API 实现）</em></p>
+
+<h2 id="片尾曲">片尾曲</h2>
+
+<p>做 AgentNEO 的动机，最开始是让自己有一个稳定、快速的网络。但是作为一个有梦想的程序员来说，既然做了，那么就要尽可能的在各个环节将自己平时的积累用起来，形成自己的一套最佳实践。这才是有意思的事情。</p>]]></content><author><name></name></author><summary type="html"><![CDATA[前言]]></summary></entry><entry><title type="html">开篇词</title><link href="https://agentneoteam.github.io/2018/04/29/kai-pian-ci.html" rel="alternate" type="text/html" title="开篇词" /><published>2018-04-29T23:25:17+08:00</published><updated>2018-04-29T23:25:17+08:00</updated><id>https://agentneoteam.github.io/2018/04/29/kai-pian-ci</id><content type="html" xml:base="https://agentneoteam.github.io/2018/04/29/kai-pian-ci.html"><![CDATA[<p>从 2017 年 12 月 25 日，AgentNEO 第一行代码提交，到 2018 年 03 月 11 号第一个新用户注册。一共用了 2 个月零 11 天。再到现在得到了大家的认可，经过了 3 个月。感谢大家。</p>
+
+<p>今后，我们会在这里发布重要更新说明、AgentNEO 这个小项目中的一些技术文章以及一些我们自己的小情绪。欢迎大家关注。喜欢可以直接 GitHub 中 Star 或者 Watch <a href="https://github.com/AgentNEOTeam/agentneoteam.github.io">本项目</a>，即可在有更新时及时看到。</p>]]></content><author><name></name></author><summary type="html"><![CDATA[从 2017 年 12 月 25 日，AgentNEO 第一行代码提交，到 2018 年 03 月 11 号第一个新用户注册。一共用了 2 个月零 11 天。再到现在得到了大家的认可，经过了 3 个月。感谢大家。]]></summary></entry></feed>
